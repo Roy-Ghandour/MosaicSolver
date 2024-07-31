@@ -1,9 +1,10 @@
+import Prototype from './components/Prototype'
 import './scss/styles.scss'
 
 function App() {
 
   return (
-    <span>Hello World!</span>
+    <Prototype />
   )
 }
 

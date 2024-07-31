@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+html,
+body {
+    background-color: lightgray;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+//Cube colours:
+$white: #fff4e4;
+$red: #af1b3f;
+$orange: #fc7a57;
+$blue: #05c7c7;
+$green: #8fd694;
+$yellow: #f7e8a4;
+
+.cube {
+    height: 80vh;
+    aspect-ratio: 3 / 4;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    & > div {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        div {
+            border: 2px solid black;
+
+            &.white {
+                background-color: $white;
+            }
+
+            &.red {
+                background-color: $red;
+            }
+
+            &.orange {
+                background-color: $orange;
+            }
+
+            &.blue {
+                background-color: $blue;
+            }
+
+            &.green {
+                background-color: $green;
+            }
+
+            &.yellow {
+                background-color: $yellow;
+            }
+        }
+    }
+
+    .up {
+    }
+}
