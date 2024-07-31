@@ -2,7 +2,7 @@ import express, { Response, Request } from "express";
 
 const app = express();
 
-//temp
+//temp needs to go in .env file
 const port = 8000;
 
 app.get("/", (req: Request, res: Response) => {
