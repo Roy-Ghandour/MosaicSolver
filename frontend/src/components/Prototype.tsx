@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import '../scss/prototype.scss'
 
 function charToElement(c : string) {
@@ -11,47 +12,65 @@ function charToElement(c : string) {
     }
 }
 
+type Sticker = "w" | "r" | "o" | "b" | "g" | "y";
+
+    type Cube = {
+       up: Array<Sticker>;
+        left: Array<Sticker>;
+        front: Array<Sticker>;
+        right: Array<Sticker>;
+        back: Array<Sticker>;
+        down: Array<Sticker>;
+    };
+
 function Prototype() {
 
-    let cube = {
-        up: Array(9).fill('w'),
-        left: Array(9).fill('o'),
-        front: Array(9).fill('g'),
-        right: Array(9).fill('r'),
-        back: Array(9).fill('b'),
-        down: Array(9).fill('y')
-    }
+    useEffect(() => {
+        // GET request using fetch inside useEffect React hook
+            // This gets called twice for some reason
+        fetch('http://localhost:8000/')
+            .then(response => response.json())
+            .then((data) => {console.log(data); setCube(data); setLoading(false)});
+    }, []);
+
+    const [cube, setCube] = useState<Cube | null>(null);
+
+    const [loading, setLoading] = useState(true)
 
     return (
-    <div className="cube">
-        <div></div>
-        <div className="up">
-            {cube.up.map(charToElement)}
-        </div>
-        <div></div>
+    <>
+    {loading ? "loading..." : 
+        <div className="cube">
+            <div></div>
+            <div className="up">
+                {cube?.up.map(charToElement)}
+            </div>
+            <div></div>
 
-        <div className="left">
-            {cube.left.map(charToElement)}
-        </div>
-        <div className="front">
-            {cube.front.map(charToElement)}
-        </div>
-        <div className="right">
-            {cube.right.map(charToElement)}
-        </div>
+            <div className="left">
+                {cube?.left.map(charToElement)}
+            </div>
+            <div className="front">
+                {cube?.front.map(charToElement)}
+            </div>
+            <div className="right">
+                {cube?.right.map(charToElement)}
+            </div>
 
-        <div></div>
-        <div className="down">
-            {cube.down.map(charToElement)}
-        </div>
-        <div></div>
+            <div></div>
+            <div className="down">
+                {cube?.down.map(charToElement)}
+            </div>
+            <div></div>
 
-        <div></div>
-        <div className="back">
-            {cube.back.map(charToElement)}
-        </div>
-        <div></div>
-    </div>
+            <div></div>
+            <div className="back">
+                {cube?.back.map(charToElement)}
+            </div>
+            <div></div>
+        </div>}
+    </>
+    
     )
 }
 

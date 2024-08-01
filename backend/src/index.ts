@@ -1,12 +1,17 @@
 import express, { Response, Request } from "express";
+import { showCube } from "./cube";
+
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 
 //temp needs to go in .env file
 const port = 8000;
 
 app.get("/", (req: Request, res: Response) => {
-    res.send("Hello from nodejs changes this is so cool");
+    res.send(showCube());
+    //console.log("Get Request");
 });
 
 app.listen(port, () => {
